@@ -1,5 +1,13 @@
+import 'package:basecode_getx/app/modules/onboarding/components/onboarding_slidetile.dart';
+import 'package:basecode_getx/app/modules/onboarding/components/onboarding_slidetile_indicator.dart';
 import 'package:basecode_getx/app/modules/onboarding/controllers/onboarding_controller.dart';
+import 'package:basecode_getx/app/routes/app_pages.dart';
+import 'package:basecode_getx/constants/constant.dart';
+import 'package:basecode_getx/styles/styles.dart';
+import 'package:basecode_getx/utils/app_storage.dart';
+import 'package:basecode_getx/widgets/buttons/button_primary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -8,10 +16,48 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('OnboardingView'), centerTitle: true),
-      body: const Center(
-        child:
-            Text('OnboardingView is working', style: TextStyle(fontSize: 20)),
+      body: Obx(
+        () => Flex(
+          direction: Axis.vertical,
+          children: [
+            verticalSpace(Insets.xxl * 2),
+            Expanded(
+              child: PageView(
+                controller: controller.cSlideTile,
+                physics: const ClampingScrollPhysics(),
+                onPageChanged: (index) {
+                  controller.slideIndex(index);
+                },
+                children: [
+                  ...controller.listSlideTile.map((e) {
+                    return OnboardingSlidetile(data: e);
+                  }),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 144.w,
+              child: (controller.slideIndex.value == 2)
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: ButtonPrimary(
+                        onTap: () {
+                          AppStorage.write(
+                            key: FIRST_TIME_OPEN_APP,
+                            value: 'true',
+                          );
+                          Get.offNamed(Routes.LOGIN);
+                        },
+                        label: 'MULAI',
+                      ),
+                    )
+                  : OnboardingSlidetileIndicator(
+                      activeIndex: controller.slideIndex.value,
+                    ),
+            )
+          ],
+        ),
       ),
     );
   }
