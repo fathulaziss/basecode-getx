@@ -44,7 +44,7 @@ class OnboardingView extends GetView<OnboardingController> {
                       child: ButtonPrimary(
                         onTap: () {
                           AppStorage.write(
-                            key: FIRST_TIME_OPEN_APP,
+                            key: APP_FIRST_TIME_OPEN,
                             value: 'true',
                           );
                           Get.offNamed(Routes.LOGIN);

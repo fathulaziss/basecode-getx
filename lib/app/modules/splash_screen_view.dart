@@ -1,3 +1,4 @@
+import 'package:basecode_getx/app/controllers/utility_controller.dart';
 import 'package:basecode_getx/services/app_cycle_service.dart';
 import 'package:basecode_getx/styles/colors.dart';
 import 'package:basecode_getx/utils/app_asset.dart';
@@ -12,10 +13,12 @@ class SplashScreenView extends StatefulWidget {
 }
 
 class _SplashScreenViewState extends State<SplashScreenView> {
+  final cUtility = Get.find<UtilityController>();
   double width = Get.width * 0.1;
 
   @override
   void initState() {
+    cUtility.getAppLanguage();
     startAnimation();
     checkRoute();
     super.initState();

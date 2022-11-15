@@ -1,7 +1,9 @@
+import 'package:basecode_getx/app/controllers/utility_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
+  final cUtility = Get.find<UtilityController>();
   final cDate = TextEditingController();
   final cPhoneNumber = TextEditingController();
 
@@ -12,17 +14,7 @@ class LoginController extends GetxController {
   ];
   RxString selectedDropdown = ''.obs;
 
-  List<String> listLanguage = [
-    'ID',
-    'EN',
-  ];
-  RxString selectedLanguage = 'ID'.obs;
-
   void setSelectedDropdown(String value) {
     selectedDropdown(value);
-  }
-
-  void setSelectedLanguage(String value) {
-    selectedLanguage(value);
   }
 }

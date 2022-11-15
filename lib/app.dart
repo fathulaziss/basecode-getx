@@ -2,6 +2,7 @@ import 'package:basecode_getx/app/bindings/initial_bindings.dart';
 import 'package:basecode_getx/app/controllers/utility_controller.dart';
 import 'package:basecode_getx/app/modules/api_log/components/api_log_overlay_button.dart';
 import 'package:basecode_getx/app/routes/app_pages.dart';
+import 'package:basecode_getx/generated/locales.g.dart';
 import 'package:basecode_getx/styles/styles.dart';
 import 'package:basecode_getx/utils/app_utils.dart';
 import 'package:basecode_getx/widgets/pages/page_info.dart';
@@ -72,10 +73,11 @@ class _AppState extends State<App> {
           initialBinding: InitialBindings(),
           initialRoute: Routes.SPLASH_SCREEN,
           getPages: AppPages.routes,
-          locale: const Locale('id', 'ID'),
+          locale: Get.deviceLocale,
           routingCallback: (value) {
             if (value != null) updatePageRoute(value);
           },
+          translationsKeys: AppTranslation.translations,
         );
       },
     );

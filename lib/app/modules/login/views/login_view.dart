@@ -1,3 +1,4 @@
+import 'package:basecode_getx/app/models/app_language_model.dart';
 import 'package:basecode_getx/app/modules/login/controllers/login_controller.dart';
 import 'package:basecode_getx/styles/styles.dart';
 import 'package:basecode_getx/widgets/buttons/button_primary.dart';
@@ -75,7 +76,7 @@ class LoginView extends GetView<LoginController> {
                 ),
                 verticalSpace(Insets.lg),
                 ButtonPrimary(
-                  label: 'LOGIN',
+                  label: 'login'.tr,
                   onTap: () {},
                 )
               ],
@@ -94,18 +95,18 @@ class LoginView extends GetView<LoginController> {
                   outlinedBorderColor: Colors.transparent,
                   textAlign: TextAlign.center,
                   items: [
-                    ...controller.listLanguage.map((item) {
-                      return DropdownMenuItem<String>(
+                    ...controller.cUtility.appLanguageOptions.map((item) {
+                      return DropdownMenuItem<AppLanguageModel>(
                         value: item,
-                        child: InputDropdownItem(value: item),
+                        child: InputDropdownItem(value: item.language),
                       );
                     })
                   ],
-                  selectedItem: controller.selectedLanguage.value,
+                  selectedItem: controller.cUtility.appLanguage.value.language,
                   onChanged: (value) {
                     if (value != null) {
-                      final data = value as String;
-                      controller.selectedLanguage(data);
+                      final data = value as AppLanguageModel;
+                      controller.cUtility.changeLanguage(data);
                     }
                   },
                 ),

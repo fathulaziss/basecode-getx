@@ -56,7 +56,7 @@ class AppCycleService {
       }
 
       //* CHECK FIRST TIME OPEN APP
-      final value = await AppStorage.read(key: FIRST_TIME_OPEN_APP);
+      final value = await AppStorage.read(key: APP_FIRST_TIME_OPEN);
       if (value.isEmpty) {
         await Get.offNamed(Routes.ONBOARDING);
         return;
