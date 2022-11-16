@@ -1,5 +1,6 @@
 import 'package:basecode_getx/app/models/app_language_model.dart';
 import 'package:basecode_getx/app/modules/login/controllers/login_controller.dart';
+import 'package:basecode_getx/app/routes/app_pages.dart';
 import 'package:basecode_getx/styles/styles.dart';
 import 'package:basecode_getx/widgets/buttons/button_primary.dart';
 import 'package:basecode_getx/widgets/inputs/input_date.dart';
@@ -77,7 +78,7 @@ class LoginView extends GetView<LoginController> {
                 verticalSpace(Insets.lg),
                 ButtonPrimary(
                   label: 'login'.tr,
-                  onTap: () {},
+                  onTap: () => Get.toNamed(Routes.HOME),
                 )
               ],
             ),

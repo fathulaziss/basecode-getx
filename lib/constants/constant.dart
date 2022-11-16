@@ -7,4 +7,4 @@ const String OPEN_LOG = 'open_log';
 const String CLOSE_LOG = 'close_log';
 const String APP_FIRST_TIME_OPEN = 'app_first_time_open';
 const String FCM_TOKEN = 'fcm_token';
-const String APP_LANGUAGE = 'app-language';
+const String APP_LANGUAGE = 'app_language';

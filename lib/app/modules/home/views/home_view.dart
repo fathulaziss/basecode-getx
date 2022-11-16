@@ -1,4 +1,10 @@
 import 'package:basecode_getx/app/modules/home/controllers/home_controller.dart';
+import 'package:basecode_getx/app/modules/home/tab/tab_account.dart';
+import 'package:basecode_getx/app/modules/home/tab/tab_dashboard.dart';
+import 'package:basecode_getx/app/modules/home/tab/tab_explore.dart';
+import 'package:basecode_getx/app/modules/home/tab/tab_history.dart';
+import 'package:basecode_getx/app/modules/home/tab/tab_home.dart';
+import 'package:basecode_getx/widgets/others/custom_bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,10 +13,26 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('HomeView'), centerTitle: true),
-      body: const Center(
-        child: Text('HomeView is working', style: TextStyle(fontSize: 20)),
+    return Obx(
+      () => Scaffold(
+        backgroundColor: Colors.white,
+        bottomNavigationBar: CustomBottomNavBar(
+          selectedIndex: controller.selectedPage.value,
+          onTap: (index) {
+            controller.navigation(index);
+          },
+        ),
+        body: PageView(
+          controller: controller.pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: const [
+            TabHome(),
+            TabExplore(),
+            TabDashboard(),
+            TabHistory(),
+            TabAccount(),
+          ],
+        ),
       ),
     );
   }

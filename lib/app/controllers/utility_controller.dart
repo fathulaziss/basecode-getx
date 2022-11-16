@@ -55,7 +55,7 @@ class UtilityController extends GetxController {
       final value = jsonDecode(data);
 
       appLanguage.value = AppLanguageModel(
-        language: value['language_code'].toString().toUpperCase(),
+        language: value['language'],
         locale: Locale(value['language_code'], value['country_code']),
       );
 
@@ -71,6 +71,7 @@ class UtilityController extends GetxController {
     appLanguage.value = value;
 
     final data = {
+      'language': value.language,
       'language_code': value.locale.languageCode,
       'country_code': value.locale.countryCode,
     };
