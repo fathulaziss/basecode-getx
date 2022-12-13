@@ -20,3 +20,20 @@ bool isValidPassword({required String password, int minLength = 6}) {
   // &&
   // hasSpecialCharacters;
 }
+
+String convertCapitalCase(String text) {
+  final newText =
+      text.isNotEmpty ? '${text[0].toUpperCase()}${text.substring(1)}' : '';
+  // ex : Hello world
+  return newText;
+}
+
+String convertTitleCase(String text) {
+  final newText = text
+      .replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => convertCapitalCase(str))
+      .join(' ');
+  // ex : Hello World
+  return newText;
+}
