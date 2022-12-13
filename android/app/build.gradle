@@ -42,7 +42,8 @@ android {
             resValue "string", "app_name", "Basecode Getx"
             proguardFile 'proguard-rules.pro'
         }
-        dev {
+        
+        development {
             dimension "flavor-dimension"
             applicationId "com.basecodegetx"
             resValue "string", "app_name", "Basecode Getx"
