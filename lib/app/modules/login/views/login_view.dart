@@ -20,102 +20,116 @@ class LoginView extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Padding(
+    return Obx(() {
+      return Scaffold(
+        bottomNavigationBar: Container(
+          decoration:
+              BoxDecoration(boxShadow: Shadows.shadowsUp, color: Colors.white),
+          height: 90.w,
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InputPrimary(
-                  label: 'Input Primary',
-                  onChanged: (value) {},
+            child: ButtonPrimary(
+              label: 'login'.tr,
+              onTap: () => Get.toNamed(Routes.HOME),
+            ),
+          ),
+        ),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      verticalSpace(Insets.xl),
+                      InputPrimary(
+                        label: 'Input Primary',
+                        onChanged: (value) {},
+                      ),
+                      InputEmail(
+                        label: 'Input Email',
+                        value: (value) {},
+                      ),
+                      InputPassword(
+                        label: 'Input Password',
+                        value: (value) {},
+                      ),
+                      InputNumber(
+                        label: 'Input Number',
+                        value: (value) {},
+                      ),
+                      InputPhone(
+                        label: 'Input Phone',
+                        controller: controller.cPhoneNumber,
+                        value: (value) {},
+                      ),
+                      InputDropdown(
+                        title: 'Input Dropdown',
+                        hintText: 'Choose Item',
+                        items: [
+                          ...controller.listDropdownExample.map((item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: InputDropdownItem(value: item),
+                            );
+                          })
+                        ],
+                        selectedItem: controller.selectedDropdown.value,
+                        onChanged: (value) {
+                          if (value != null) {
+                            final data = value as String;
+                            controller.setSelectedDropdown(data);
+                          }
+                        },
+                      ),
+                      InputDate(
+                        label: 'Input Date',
+                        controller: controller.cDate,
+                        value: (value) {},
+                      ),
+                      verticalSpace(
+                        MediaQuery.of(context).viewInsets.bottom / 8,
+                      ),
+                    ],
+                  ),
                 ),
-                InputEmail(
-                  label: 'Input Email',
-                  value: (value) {},
-                ),
-                InputPassword(
-                  label: 'Input Password',
-                  value: (value) {},
-                ),
-                InputNumber(
-                  label: 'Input Number',
-                  value: (value) {},
-                ),
-                InputPhone(
-                  label: 'Input Phone',
-                  controller: controller.cPhoneNumber,
-                  value: (value) {},
-                ),
-                Obx(
-                  () => InputDropdown(
-                    title: 'Input Dropdown',
-                    hintText: 'Choose Item',
+              ),
+              Positioned(
+                top: 20.w,
+                right: 20.w,
+                child: SizedBox(
+                  width: 72.w,
+                  height: 50.w,
+                  child: InputDropdown(
+                    hintText: '',
+                    borderColor: Colors.blueGrey[100],
+                    outlinedBorderColor: Colors.transparent,
+                    textAlign: TextAlign.center,
                     items: [
-                      ...controller.listDropdownExample.map((item) {
-                        return DropdownMenuItem<String>(
+                      ...controller.cUtility.appLanguageOptions.map((item) {
+                        return DropdownMenuItem<AppLanguageModel>(
                           value: item,
-                          child: InputDropdownItem(value: item),
+                          child: InputDropdownItem(value: item.language),
                         );
                       })
                     ],
-                    selectedItem: controller.selectedDropdown.value,
+                    selectedItem:
+                        controller.cUtility.appLanguage.value.language,
                     onChanged: (value) {
                       if (value != null) {
-                        final data = value as String;
-                        controller.setSelectedDropdown(data);
+                        final data = value as AppLanguageModel;
+                        controller.cUtility.changeLanguage(data);
                       }
                     },
                   ),
                 ),
-                InputDate(
-                  label: 'Input Date',
-                  controller: controller.cDate,
-                  value: (value) {},
-                ),
-                verticalSpace(Insets.lg),
-                ButtonPrimary(
-                  label: 'login'.tr,
-                  onTap: () => Get.toNamed(Routes.HOME),
-                )
-              ],
-            ),
+              )
+            ],
           ),
-          Positioned(
-            top: 40.w,
-            right: 30.w,
-            child: SizedBox(
-              width: 72.w,
-              height: 50.w,
-              child: Obx(
-                () => InputDropdown(
-                  hintText: '',
-                  borderColor: Colors.blueGrey[100],
-                  outlinedBorderColor: Colors.transparent,
-                  textAlign: TextAlign.center,
-                  items: [
-                    ...controller.cUtility.appLanguageOptions.map((item) {
-                      return DropdownMenuItem<AppLanguageModel>(
-                        value: item,
-                        child: InputDropdownItem(value: item.language),
-                      );
-                    })
-                  ],
-                  selectedItem: controller.cUtility.appLanguage.value.language,
-                  onChanged: (value) {
-                    if (value != null) {
-                      final data = value as AppLanguageModel;
-                      controller.cUtility.changeLanguage(data);
-                    }
-                  },
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 }
