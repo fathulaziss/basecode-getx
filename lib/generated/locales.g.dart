@@ -11,16 +11,19 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
+  static const start = 'start';
   static const login = 'login';
   static const register = 'register';
 }
 
 class Locales {
   static const id_ID = {
+    'start': 'Mulai',
     'login': 'Masuk',
     'register': 'Daftar',
   };
   static const en_US = {
+    'start': 'Start',
     'login': 'Login',
     'register': 'Register',
   };

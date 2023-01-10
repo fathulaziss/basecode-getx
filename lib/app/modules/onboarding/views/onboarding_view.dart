@@ -49,7 +49,7 @@ class OnboardingView extends GetView<OnboardingController> {
                           );
                           Get.offNamed(Routes.LOGIN);
                         },
-                        label: 'MULAI',
+                        label: 'start'.tr,
                       ),
                     )
                   : OnboardingSlidetileIndicator(
