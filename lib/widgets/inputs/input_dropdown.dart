@@ -73,14 +73,10 @@ class InputDropdown extends StatelessWidget {
                 )
               ],
             ),
-            scrollbarAlwaysShow: false,
-            itemHeight: 45.h,
-            dropdownMaxHeight: 45.h * items.length,
             items: items,
             onChanged: onChanged,
           ),
         ),
-        verticalSpace(Insets.xs),
       ],
     );
   }

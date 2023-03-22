@@ -6,8 +6,7 @@ class AppLanguageModel {
     this.locale = const Locale('en', 'US'),
   });
 
-  factory AppLanguageModel.fromJson(Map<String, dynamic> json) =>
-      AppLanguageModel(
+  factory AppLanguageModel.fromJson(dynamic json) => AppLanguageModel(
         language: json['language'],
         locale: Locale(
           json['locale']['language_code'],

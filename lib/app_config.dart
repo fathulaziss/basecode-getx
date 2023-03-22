@@ -1,9 +1,9 @@
 enum Flavor { development, staging, production }
 
 class AppConfig {
-  static const urlDev = 'urlDev';
-  static const urlStaging = 'urlStaging';
-  static const urlProd = 'urlProd';
+  static const urlDev = 'https://api.themoviedb.org/3/';
+  static const urlStaging = 'https://api.themoviedb.org/3/';
+  static const urlProd = 'https://api.themoviedb.org/3/';
 
   static late Flavor appFlavor;
 
